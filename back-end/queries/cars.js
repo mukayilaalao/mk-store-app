@@ -43,7 +43,10 @@ const updateACar = async (id, car) => {
 //query to delete a car
 const deleteACar = async (id) => {
   try {
-    const deletedCar = await db.one("DELETE FROM cars WHERE id=$1", id);
+    const deletedCar = await db.one(
+      "DELETE FROM cars WHERE id=$1 RETURNING *",
+      id
+    );
     return deletedCar;
   } catch (error) {
     return error;
@@ -53,7 +56,7 @@ const deleteACar = async (id) => {
 const createACar = async (car) => {
   try {
     const createdCar = await db.one(
-      "INSERT INTO cars (vim,name,description,price,rating,featured,image,color) VALUES($1,$2,$3,$4,$5,$6,$7,$8)",
+      "INSERT INTO cars (vim,name,description,price,rating,featured,image,color) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *",
       [
         car.vim,
         car.name,
