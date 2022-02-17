@@ -3,9 +3,15 @@ CREATE DATABASE cta_dev;
 
 \c cta_dev;
 
-DROP TABLE IF EXISTS test;
 
-CREATE TABLE test (
+CREATE TABLE cars (
     id SERIAL PRIMARY KEY, 
-    name TEXT
+    vim VARCHAR(50) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    description TEXT,
+    price INT NOT NULL,
+    rating NUMERIC, CHECK(rating>=0 AND rating<=5),
+    featured BOOLEAN,
+    image TEXT,
+    color VARCHAR(50)
 );
