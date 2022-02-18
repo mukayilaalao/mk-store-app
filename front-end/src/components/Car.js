@@ -9,7 +9,7 @@ function Car({ car }) {
           <img src={car.image} alt={car.name} />
         </Link>
       </div>
-      <p className="description">{car.description}</p>
+      <p>{car.color}</p>
       <h4>${car.price}</h4>
     </section>
   );
