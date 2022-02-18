@@ -10,7 +10,8 @@
   background-color: chocolate;
   height: 75px;
 }
-.nav-bar h1 {
+.nav-bar h1,
+.foot-section h2 {
   font-family: "Luckiest Guy", cursive;
 }
 .nav-bar button {
@@ -18,8 +19,9 @@
   box-shadow: 1px 5px 5px black;
 }
 .foot-section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: chocolate;
 }
 .home {
@@ -60,4 +62,15 @@ body a {
   min-height: 250px;
   background-color: bisque;
   box-shadow: 5px 5px 5px black;
+}
+.form-add-edit {
+  width: 25%;
+  margin: 50px auto;
+}
+.form-add-edit input[type="text"],
+textarea {
+  min-width: 350px;
+}
+.option-buttons button {
+  min-width: 170px;
 }

@@ -23,7 +23,7 @@ function Form({ submitHandler, carInfo }) {
     submitHandler(car);
   };
   return (
-    <div>
+    <div className="form-add-edit">
       <form onSubmit={handleSubmit}>
         <label htmlFor="vim">Vim</label>
         <br />
