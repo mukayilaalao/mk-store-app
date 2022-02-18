@@ -1,3 +1,5 @@
+import AddCar from "../components/AddCar";
+
 function New() {
   return (
     <div>

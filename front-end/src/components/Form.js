@@ -1,4 +1,5 @@
-function Form() {
+import { useState, useEffect } from "react";
+function Form({ handleSubmit, car }) {
   const [car, setCar] = useState({
     vim: "",
     name: "",
@@ -9,6 +10,7 @@ function Form() {
     rating: 5,
     featured: false,
   });
+  if (car) setCar(car);
   const handleTextChange = (e) => {
     if (e.target.id === "featured")
       setCar({ ...car, featured: e.target.checked });
@@ -16,6 +18,7 @@ function Form() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleSubmit(car);
   };
   return (
     <div>
@@ -82,7 +85,9 @@ function Form() {
         <label htmlFor="rating">Rating</label>
         <br />
         <input
-          type="number"
+          type="range"
+          min="0"
+          max="5"
           id="rating"
           value={car.rating}
           onChange={handleTextChange}
