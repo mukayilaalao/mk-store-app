@@ -30,3 +30,6 @@
 .description {
   font-family: "Tangerine", cursive;
 }
+body img {
+  width: 100px;
+}

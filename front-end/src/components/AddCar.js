@@ -12,7 +12,7 @@ function AddCar() {
       .catch((e) => console.log(e));
   };
 
-  return <Form handleSubmit={addACar} />;
+  return <Form submitHandler={addACar} />;
 }
 
 export default AddCar;

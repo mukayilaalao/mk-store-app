@@ -1,6 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Foot from "./components/Foot";
+import FourOFour from "./pages/FourOFour";
+import Index from "./pages/Index";
+import Show from "./pages/Show";
+import Edit from "./pages/Edit";
+import New from "./pages/New";
+import Home from "./pages/Home";
 
 const App = () => {
   return (

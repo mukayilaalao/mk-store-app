@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-function Form({ handleSubmit, car }) {
+function Form({ submitHandler, carInfo }) {
   const [car, setCar] = useState({
     vim: "",
     name: "",
@@ -10,7 +10,7 @@ function Form({ handleSubmit, car }) {
     rating: 5,
     featured: false,
   });
-  if (car) setCar(car);
+  if (carInfo) setCar(carInfo);
   const handleTextChange = (e) => {
     if (e.target.id === "featured")
       setCar({ ...car, featured: e.target.checked });
@@ -18,7 +18,7 @@ function Form({ handleSubmit, car }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSubmit(car);
+    submitHandler(car);
   };
   return (
     <div>
@@ -47,11 +47,11 @@ function Form({ handleSubmit, car }) {
         <br />
         <textarea
           id="description"
+          value={car.description}
           onChange={handleTextChange}
           placeholder="Car description..."
-        >
-          {car.description}
-        </textarea>
+        />
+
         <hr />
         <label htmlFor="color">Color</label>
         <br />
@@ -98,7 +98,7 @@ function Form({ handleSubmit, car }) {
         <input
           type="checkbox"
           id="featured"
-          checked={checked}
+          checked={car.featured}
           onChange={handleTextChange}
         />
         <hr />

@@ -20,7 +20,7 @@ function EditCar() {
       .then(() => navigate("/cars"))
       .catch((e) => console.log(e));
   };
-  return <Form car={car} handleSubmit={editACar} />;
+  return <Form carInfo={car} submitHandler={editACar} />;
 }
 
 export default EditCar;
