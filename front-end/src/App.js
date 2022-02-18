@@ -12,6 +12,9 @@ import { useState } from "react";
 
 const App = () => {
   const [cart, setCart] = useState([]);
+  const addToTheCart = (car) => {
+    setCart([...cart, car]);
+  };
   return (
     <Router>
       <NavBar />
@@ -19,7 +22,10 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/cars" element={<Index />} />
         <Route path="/cars/new" element={<New />} />
-        <Route path="/cars/:id" element={<Show />} />
+        <Route
+          path="/cars/:id"
+          element={<Show addToTheCart={addToTheCart} />}
+        />
         <Route path="/cars/:id/edit" element={<Edit />} />
         <Route path="*" element={<FourOFour />} />
       </Routes>

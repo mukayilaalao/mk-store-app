@@ -1,10 +1,10 @@
 import CarDetails from "../components/CarDetails";
 
-function Show() {
+function Show({ addToTheCart }) {
   return (
     <div>
       <h2>Car Details</h2>
-      <CarDetails />
+      <CarDetails addToTheCart={addToTheCart} />
     </div>
   );
 }

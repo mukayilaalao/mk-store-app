@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
 const API = process.env.REACT_APP_API_URL;
-function CarDetails() {
+function CarDetails({ addToTheCart }) {
   const [car, setCar] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
@@ -29,6 +29,7 @@ function CarDetails() {
         <h5>Price: ${car.price}</h5>
         <p className="description">{car.description}</p>
         <p>Rating: {car.rating}</p>
+        <button onClick={() => addToTheCart(car)}>Buy Now</button>
       </div>
       <div className="showBackEditDelete">
         <div>
