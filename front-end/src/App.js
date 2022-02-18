@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-const API = process.env.REACT_APP_API_URL;
+import NavBar from "./components/NavBar";
+import Foot from "./components/Foot";
+
 const App = () => {
   return (
     <Router>
