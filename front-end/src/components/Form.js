@@ -10,7 +10,9 @@ function Form({ submitHandler, carInfo }) {
     rating: 5,
     featured: false,
   });
-  if (carInfo) setCar(carInfo);
+  useEffect(() => {
+    if (carInfo) setCar(carInfo);
+  }, [carInfo]);
   const handleTextChange = (e) => {
     if (e.target.id === "featured")
       setCar({ ...car, featured: e.target.checked });
