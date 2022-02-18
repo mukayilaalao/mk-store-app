@@ -7,6 +7,7 @@ const {
   createACar,
   updateACar,
   deleteACar,
+  getAllFeaturedCars,
 } = require("../queries/cars.js");
 // import validation functions
 const {
@@ -19,6 +20,13 @@ const {
 //get all cars
 router.get("/", async (req, res) => {
   const cars = await getAllCars();
+  if (cars[0]) {
+    res.json({ success: true, result: cars });
+  } else res.redirect("/*");
+});
+//get all featured cars
+router.get("/featured", async (req, res) => {
+  const cars = await getAllFeaturedCars();
   if (cars[0]) {
     res.json({ success: true, result: cars });
   } else res.redirect("/*");

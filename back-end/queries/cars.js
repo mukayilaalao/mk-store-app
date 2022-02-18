@@ -9,6 +9,15 @@ const getAllCars = async () => {
     return error;
   }
 };
+//get all featured cars
+const getAllFeaturedCars = async () => {
+  try {
+    const cars = await db.any("SELECT * FROM cars WHERE featured=$1", true);
+    return cars;
+  } catch (error) {
+    return error;
+  }
+};
 //query one car
 const getOneCar = async (id) => {
   try {
@@ -74,4 +83,11 @@ const createACar = async (car) => {
   }
 };
 
-module.exports = { getAllCars, getOneCar, createACar, updateACar, deleteACar };
+module.exports = {
+  getAllCars,
+  getOneCar,
+  createACar,
+  updateACar,
+  deleteACar,
+  getAllFeaturedCars,
+};

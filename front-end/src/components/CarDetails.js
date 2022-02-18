@@ -25,6 +25,7 @@ function CarDetails() {
         <img src={car.image} alt={car.name} />
         <h4>Name: {car.name}</h4>
         <p>Color: {car.color}</p>
+        <h5>Vim number: {car.vim}</h5>
         <h5>Price: ${car.price}</h5>
         <p className="description">{car.description}</p>
         <p>Rating: {car.rating}</p>
