@@ -8,7 +8,14 @@ const {
   updateACar,
   deleteACar,
 } = require("../queries/cars.js");
-
+// import validation functions
+const {
+  capitalizedName,
+  checkPrice,
+  checkVim,
+  checkName,
+  addDefaultImage,
+} = require("../validation/cars.js");
 //get all cars
 router.get("/", async (req, res) => {
   const cars = await getAllCars();
@@ -33,18 +40,20 @@ router.delete("/:id", async (req, res) => {
   } else res.redirect("/*");
 });
 //update a car
-router.put("/:id", async (req, res) => {
+router.put("/:id", checkName, checkPrice, checkVim, async (req, res) => {
   const { id } = req.params;
-  const car = req.body;
-  const updatedCar = await updateACar(id, car);
+  let car = req.body;
+  car = { ...car, name: capitalizedName(car.name) };
+  const updatedCar = await updateACar(id, addDefaultImage(car));
   if (updatedCar.id) {
     res.json({ success: true, result: updatedCar });
   } else res.redirect("/*");
 });
 //create a car
-router.post("/", async (req, res) => {
-  const car = req.body;
-  const createdCar = await createACar(car);
+router.post("/", checkName, checkPrice, checkVim, async (req, res) => {
+  let car = req.body;
+  car = { ...car, name: capitalizedName(car.name) };
+  const createdCar = await createACar(addDefaultImage(car));
   if (createdCar.id) {
     res.json({ success: true, result: createdCar });
   } else res.redirect("/*");

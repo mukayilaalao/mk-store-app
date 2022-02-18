@@ -5,7 +5,7 @@ const checkName = (req, res, next) => {
 };
 const checkVim = (req, res, next) => {
   const { vim } = req.body;
-  if (vim.length === 17) next();
+  if (vim && vim.length === 17) next();
   else
     res.status(422).json({
       success: false,
@@ -28,5 +28,20 @@ const capitalizedName = (str) => {
     .map((el) => (el.length > 2 ? el[0].toUpperCase() + el.slice(1) : el))
     .join(" ");
 };
+const addDefaultImage = (car) => {
+  if (!car.image) {
+    car = {
+      ...car,
+      image: "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg",
+    };
+  }
+  return car;
+};
 
-module.exports = { capitalizedName, checkPrice, checkVim, checkName };
+module.exports = {
+  capitalizedName,
+  checkPrice,
+  checkVim,
+  checkName,
+  addDefaultImage,
+};
