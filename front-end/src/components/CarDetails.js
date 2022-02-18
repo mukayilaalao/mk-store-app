@@ -27,19 +27,22 @@ function CarDetails() {
         <p>Color: {car.color}</p>
         <h5>Price: ${car.price}</h5>
         <p className="description">{car.description}</p>
+        <p>Rating: {car.rating}</p>
       </div>
-      <div>
-        <Link to="/cars">
-          <button>Back</button>
-        </Link>
-      </div>
-      <div>
-        <Link to={`/cars/${id}/edit`}>
-          <button>Edit</button>
-        </Link>
-      </div>
-      <div>
-        <button onClick={handleDelete}>Delete</button>
+      <div className="showBackEditDelete">
+        <div>
+          <Link to="/cars">
+            <button>Back</button>
+          </Link>
+        </div>
+        <div>
+          <Link to={`/cars/${id}/edit`}>
+            <button>Edit</button>
+          </Link>
+        </div>
+        <div>
+          <button onClick={handleDelete}>Delete</button>
+        </div>
       </div>
     </article>
   );

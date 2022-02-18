@@ -32,6 +32,7 @@ function Form({ submitHandler, carInfo }) {
           id="vim"
           value={car.vim}
           onChange={handleTextChange}
+          placeholder="should be 17 long..."
           required
         />
         <hr />

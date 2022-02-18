@@ -7,29 +7,57 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: chocolate;
+  height: 75px;
 }
 .nav-bar h1 {
   font-family: "Luckiest Guy", cursive;
 }
 .nav-bar button {
   font-family: "Special Elite", cursive;
+  box-shadow: 1px 5px 5px black;
 }
 .foot-section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  background-color: chocolate;
 }
 .home {
   font-family: "Shizuru", cursive;
 }
 .cars {
   width: 90%;
+  margin: 100px auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
 .description {
   font-family: "Tangerine", cursive;
+  width: 50%;
 }
 body img {
   width: 100px;
+}
+body a {
+  text-decoration: none;
+}
+.showBackEditDelete {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  margin: 100px auto;
+}
+.showBackEditDelete button {
+  background-color: chocolate;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-family: "Courier New", Courier, monospace;
+}
+.car {
+  border: 1px solid black;
+  border-radius: 5px;
+  min-height: 250px;
+  background-color: bisque;
+  box-shadow: 5px 5px 5px black;
 }
