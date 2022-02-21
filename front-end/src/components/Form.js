@@ -25,7 +25,7 @@ function Form({ submitHandler, carInfo }) {
   return (
     <div className="form-add-edit">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="vim">Vim</label>
+        <label htmlFor="vim">Vim Number</label>
         <br />
         <input
           type="text"

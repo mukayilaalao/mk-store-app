@@ -75,3 +75,13 @@ textarea {
 .option-buttons button {
   min-width: 170px;
 }
+.removed-cars button {
+  background-color: red;
+  border-radius: 5px;
+  box-shadow: 0 0 5px black;
+}
+.car-details button {
+  background-color: gray;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px black;
+}

@@ -21,7 +21,7 @@ function CarDetails({ addToTheCart }) {
   };
   return (
     <article>
-      <div>
+      <div className="car-details">
         <img src={car.image} alt={car.name} />
         <h4>Name: {car.name}</h4>
         <p>Color: {car.color}</p>
@@ -29,7 +29,7 @@ function CarDetails({ addToTheCart }) {
         <h5>Price: ${car.price}</h5>
         <p className="description">{car.description}</p>
         <p>Rating: {car.rating}</p>
-        <button onClick={() => addToTheCart(car)}>Buy Now</button>
+        <button onClick={() => addToTheCart(car)}>Add To Cart</button>
       </div>
       <div className="showBackEditDelete">
         <div>

@@ -1,4 +1,4 @@
-function ShoppingCart({ cart }) {
+function ShoppingCart({ cart, removeFromTheCart }) {
   //get the total price
   const calculateTotal = (arr) => {
     return arr.map((car) => Number(car.price)).reduce((a, b) => a + b, 0);
@@ -39,30 +39,39 @@ function ShoppingCart({ cart }) {
   };
   return (
     <div>
-      <h2>Shopping Cart</h2>
-      <h3>item(s): {cart.length}</h3>
-      <section>
-        <ul>
-          {cart.map((car) => (
-            <li key={car.id}>
-              <h4>Car Name: {car.name}</h4>
-              <p>Car Price Before Tax: {formatting(formatPrice(car.price))}</p>
-            </li>
-          ))}
-        </ul>
-        <p>
-          <strong>SubTotal:</strong>{" "}
-          {formatting(formatPrice(calculateTotal(cart)))}
-        </p>
-        <p>
-          <strong>Tax:</strong>{" "}
-          {formatting(formatPrice(calculateTotal(cart) * 0.08875))}
-        </p>
-        <h3>
-          Total: {formatting(formatPrice(calculateTotal(cart) * 1.08875))}
-        </h3>
-        <button>Pay Now</button>
-      </section>
+      {cart.length ? (
+        <section>
+          <h2>Shopping Cart</h2>
+          <h3>item(s): {cart.length}</h3>
+          <ul className="removed-cars">
+            {cart.map((car) => (
+              <li key={car.id}>
+                <h4>Car Name: {car.name}</h4>
+                <p>
+                  Car Price Before Tax: {formatting(formatPrice(car.price))}
+                </p>
+                <button onClick={() => removeFromTheCart(car)}>
+                  Remove The Car
+                </button>
+              </li>
+            ))}
+          </ul>
+          <p>
+            <strong>SubTotal:</strong>{" "}
+            {formatting(formatPrice(calculateTotal(cart)))}
+          </p>
+          <p>
+            <strong>Tax:</strong>{" "}
+            {formatting(formatPrice(calculateTotal(cart) * 0.08875))}
+          </p>
+          <h3>
+            Total: {formatting(formatPrice(calculateTotal(cart) * 1.08875))}
+          </h3>
+          <button>Pay Now</button>
+        </section>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

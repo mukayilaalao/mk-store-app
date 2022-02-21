@@ -15,6 +15,10 @@ const App = () => {
   const addToTheCart = (car) => {
     setCart([...cart, car]);
   };
+  const removeFromTheCart = (carToRemoved) => {
+    const newCart = [...cart].filter((car) => car.id !== carToRemoved.id);
+    setCart(newCart);
+  };
   return (
     <Router>
       <NavBar />
@@ -29,7 +33,7 @@ const App = () => {
         <Route path="/cars/:id/edit" element={<Edit />} />
         <Route path="*" element={<FourOFour />} />
       </Routes>
-      <ShoppingCart cart={cart} />
+      <ShoppingCart cart={cart} removeFromTheCart={removeFromTheCart} />
       <Foot />
     </Router>
   );
