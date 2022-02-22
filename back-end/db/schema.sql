@@ -3,10 +3,10 @@ CREATE DATABASE cta_dev;
 
 \c cta_dev;
 
-
+--cars table
 CREATE TABLE cars (
     id SERIAL PRIMARY KEY, 
-    vim VARCHAR(17) NOT NULL,
+    vim VARCHAR(17) NOT NULL,  -- vim should be length 17 and not null
     name VARCHAR(50) NOT NULL,
     description TEXT,
     price INT NOT NULL,
@@ -17,7 +17,8 @@ CREATE TABLE cars (
     year VARCHAR(4) NOT NULL,
     mileage INT NOT NULL
 );
--- vim should be length 17 and not null
+
+--reviews table
 CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
     reviewer VARCHAR(50),
