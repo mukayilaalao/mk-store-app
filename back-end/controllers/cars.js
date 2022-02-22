@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const reviews = require("./reviews.js");
 //Import queries functions
 const {
   getAllCars,
@@ -17,6 +18,8 @@ const {
   checkName,
   addDefaultImage,
 } = require("../validation/cars.js");
+//base route for reviews
+router.use("/:car_id/reviews", reviews);
 //get all cars
 router.get("/", async (req, res) => {
   const cars = await getAllCars();
