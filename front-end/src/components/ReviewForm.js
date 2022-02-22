@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-function ReviewForm({ submitHandler, reviewInfo }) {
+
+function ReviewForm(props) {
+  const { reviewHandler, reviewInfo } = props;
   const { id } = useParams();
   const [review, setReview] = useState({
     reviewer: "",
@@ -16,7 +18,7 @@ function ReviewForm({ submitHandler, reviewInfo }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    submitHandler(review);
+    reviewHandler(review);
     setReview({
       reviewer: "",
       content: "",
@@ -26,6 +28,7 @@ function ReviewForm({ submitHandler, reviewInfo }) {
   };
   return (
     <div className="review-form">
+      {props.children}
       <form onSubmit={handleSubmit}>
         <label htmlFor="reviewer">Reviewer Name</label>
         <br />
