@@ -23,8 +23,8 @@ CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
     reviewer VARCHAR(50),
     content TEXT,
-    rating NUMERIC,
-    CHECK (rating >= 0 AND rating <= 5),
+    rev_rating NUMERIC,
+    CHECK (rev_rating >= 0 AND rev_rating <= 5),
     car_id INTEGER REFERENCES cars (id)
     ON DELETE CASCADE
 );
