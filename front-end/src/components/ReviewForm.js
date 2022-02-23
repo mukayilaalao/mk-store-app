@@ -55,7 +55,7 @@ function ReviewForm(props) {
         <label htmlFor="rev_rating">Rate This Car</label>
         <br />
         <input
-          type="range"
+          type="number"
           min="0"
           max="5"
           id="rev_rating"

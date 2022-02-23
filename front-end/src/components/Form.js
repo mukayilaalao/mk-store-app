@@ -114,7 +114,7 @@ function Form({ submitHandler, carInfo }) {
         <label htmlFor="rating">Rating</label>
         <br />
         <input
-          type="range"
+          type="number"
           min="0"
           max="5"
           id="rating"
