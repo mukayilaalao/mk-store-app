@@ -20,7 +20,11 @@ function EditReview({
           (review) => review.id !== rev.id
         );
         setReviews([...remainingRev, rev]);
-        setContentView({ ...contentView, showContent: true });
+        setContentView({
+          ...contentView,
+          showContent: true,
+          clickedReviewId: null,
+        });
       })
       .catch((e) => console.log(e));
   };
