@@ -19,12 +19,13 @@ function ReviewForm(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     reviewHandler(review);
-    setReview({
-      reviewer: "",
-      content: "",
-      rev_rating: 5,
-      car_id: id,
-    });
+    if (!reviewInfo)
+      setReview({
+        reviewer: "",
+        content: "",
+        rev_rating: 5,
+        car_id: id,
+      });
   };
   return (
     <div className="review-form">

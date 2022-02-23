@@ -58,6 +58,8 @@ function Reviews() {
                     reviewInfo={review}
                     reviews={reviews}
                     setReviews={setReviews}
+                    setContentView={setContentView}
+                    contentView={contentView}
                   />
                 ) : (
                   <section>
