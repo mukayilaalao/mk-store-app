@@ -45,6 +45,7 @@ function Form({ submitHandler, carInfo }) {
           id="name"
           value={car.name}
           onChange={handleTextChange}
+          placeholder="make model"
           required
         />
         <hr />
