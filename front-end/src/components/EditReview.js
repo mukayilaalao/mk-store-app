@@ -14,11 +14,19 @@ function EditReview({ reviewInfo, setReviews, reviews }) {
       })
       .catch((e) => console.log(e));
   };
+  const deleteReview = (rev) => {
+    axios
+      .delete(`${API}/cars/${id}/reviews/${reviewInfo.id}`)
+      .then(() => {
+        setReviews([...reviews].filter((review) => review.id !== rev.id));
+      })
+      .catch((e) => console.log(e));
+  };
   return (
     <ReviewForm
       reviewInfo={reviewInfo}
       reviewHandler={editReview}
-      setReviews={setReviews}
+      handleDelete={deleteReview}
     />
   );
 }

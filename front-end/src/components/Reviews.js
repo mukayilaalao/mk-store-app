@@ -33,8 +33,14 @@ function Reviews() {
     });
   };
   return (
-    <div>
-      <button onClick={handleReviews}> See This Car Reviews</button>
+    <div className="reviews">
+      <button onClick={handleReviews}>
+        {" "}
+        <div className="reviews-div">
+          <h3>See This Car Reviews 🏎️</h3>
+          <div>👇🏽</div>
+        </div>
+      </button>
       {reviewsView ? (
         <div>
           <AddReview reviews={reviews} setReviews={setReviews} />
@@ -56,7 +62,7 @@ function Reviews() {
                   <section>
                     <h3>{review.reviewer}</h3>
                     <p>{review.content}</p>
-                    <p>{review.rev_rating}</p>
+                    <p>{"⭐".repeat(review.rev_rating)}</p>
                   </section>
                 )}
               </div>

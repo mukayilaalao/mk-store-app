@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function ReviewForm(props) {
-  const { reviewHandler, reviewInfo } = props;
+  const { reviewHandler, reviewInfo, handleDelete } = props;
   const { id } = useParams();
   const [review, setReview] = useState({
     reviewer: "",
@@ -65,6 +65,15 @@ function ReviewForm(props) {
         <hr />
         <input type="submit" />
       </form>
+      <div className="review-delete">
+        {reviewInfo ? (
+          <button onClick={() => handleDelete(reviewInfo)}>
+            Delete Review
+          </button>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 }

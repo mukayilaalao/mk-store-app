@@ -3,10 +3,12 @@ function Form({ submitHandler, carInfo }) {
   const [car, setCar] = useState({
     vim: "",
     name: "",
+    year: 2022,
+    mileage: 0,
     description: "",
     color: "",
     image: "",
-    price: null,
+    price: 1000,
     rating: 5,
     featured: false,
   });
@@ -46,6 +48,28 @@ function Form({ submitHandler, carInfo }) {
           required
         />
         <hr />
+        <label htmlFor="year">Year</label>
+        <br />
+        <input
+          type="number"
+          id="year"
+          min="1970"
+          value={car.year}
+          onChange={handleTextChange}
+          required
+        />
+        <hr />
+        <label htmlFor="mileage">Mileage</label>
+        <br />
+        <input
+          type="number"
+          min="0"
+          id="mileage"
+          value={car.mileage}
+          onChange={handleTextChange}
+          required
+        />
+        <hr />
         <label htmlFor="description">Description</label>
         <br />
         <textarea
@@ -79,6 +103,7 @@ function Form({ submitHandler, carInfo }) {
         <br />
         <input
           type="number"
+          min="1000"
           id="price"
           value={car.price}
           onChange={handleTextChange}

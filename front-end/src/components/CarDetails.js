@@ -25,6 +25,8 @@ function CarDetails({ addToTheCart }) {
       <div className="car-details">
         <img src={car.image} alt={car.name} />
         <h4>Name: {car.name}</h4>
+        <p>Year: {car.year}</p>
+        <p>Mileage: {car.mileage}</p>
         <p>Color: {car.color}</p>
         <h5>Vim number: {car.vim}</h5>
         <h5>Price: ${car.price}</h5>

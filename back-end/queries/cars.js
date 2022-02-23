@@ -31,7 +31,7 @@ const getOneCar = async (id) => {
 const updateACar = async (id, car) => {
   try {
     const updatedCar = await db.one(
-      "UPDATE cars SET vim=$1,name=$2,description=$3,price=$4,rating=$5,featured=$6,image=$7,color=$8 WHERE id=$9 RETURNING *",
+      "UPDATE cars SET vim=$1,name=$2,description=$3,price=$4,rating=$5,featured=$6,image=$7,color=$8,year=$9,mileage=$10 WHERE id=$11 RETURNING *",
       [
         car.vim,
         car.name,
@@ -41,6 +41,8 @@ const updateACar = async (id, car) => {
         car.featured,
         car.image,
         car.color,
+        car.year,
+        car.mileage,
         id,
       ]
     );
@@ -65,7 +67,7 @@ const deleteACar = async (id) => {
 const createACar = async (car) => {
   try {
     const createdCar = await db.one(
-      "INSERT INTO cars (vim,name,description,price,rating,featured,image,color) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *",
+      "INSERT INTO cars (vim,name,description,price,rating,featured,image,color,year,mileage) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING *",
       [
         car.vim,
         car.name,
@@ -75,6 +77,8 @@ const createACar = async (car) => {
         car.featured,
         car.image,
         car.color,
+        car.year,
+        car.mileage,
       ]
     );
     return createdCar;

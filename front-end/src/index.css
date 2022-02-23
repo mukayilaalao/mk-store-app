@@ -85,3 +85,30 @@ textarea {
   border-radius: 5px;
   box-shadow: 3px 3px 5px black;
 }
+.review-delete button {
+  background-color: rgb(255, 0, 0, 0.75);
+  border-radius: 5px;
+}
+.reviews {
+  width: 50%;
+  margin: 50px auto;
+}
+.reviews button {
+  padding: 0;
+  max-height: 40px;
+  border: 2px solid black;
+  border-radius: 5px;
+  box-shadow: 5px 3px 1px black;
+}
+
+.reviews-div h3 {
+  margin: 0;
+}
+input[type="submit"] {
+  background-color: gray;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px black;
+}
+.review-form {
+  margin-bottom: 50px;
+}
