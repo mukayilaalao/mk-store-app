@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 
+import formatPrice from "../helpers/moneyFormat";
+import formatting from "../helpers/format";
+
 function Car({ car }) {
   return (
     <section className="car">
@@ -10,7 +13,7 @@ function Car({ car }) {
         </Link>
       </div>
       <p>{car.color}</p>
-      <h4>${car.price}</h4>
+      <h4>{formatting(formatPrice(car.price))}</h4>
     </section>
   );
 }

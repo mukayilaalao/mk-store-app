@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import Reviews from "./Reviews";
+import formatPrice from "../helpers/moneyFormat";
+import formatting from "../helpers/format";
 
 const API = process.env.REACT_APP_API_URL;
 function CarDetails({ addToTheCart }) {
@@ -29,7 +31,7 @@ function CarDetails({ addToTheCart }) {
         <p>Mileage: {car.mileage}</p>
         <p>Color: {car.color}</p>
         <h5>Vim number: {car.vim}</h5>
-        <h5>Price: ${car.price}</h5>
+        <h5>Price: {formatting(formatPrice(car.price))}</h5>
         <p className="description">{car.description}</p>
         <p>Rating: {car.rating}</p>
         <button onClick={() => addToTheCart(car)}>Add To Cart</button>

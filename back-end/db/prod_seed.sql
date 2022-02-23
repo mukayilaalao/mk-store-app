@@ -7,13 +7,13 @@ values
   ('JN1AZ4EH5DM472471', 'Nissan Quest','The 2017 Nissan Quest minivan offers an extensive list of family-friendly features – from its sophisticated styling with full surround glass that provides an airy, open interior environment to one-touch power sliding doors, quick release fold-flat 2nd and 3rd row seats, Advanced Climate Control System, and an always', 59871, 4, false, 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRQiWQnC-huSZ7IvD3EcTfLExCnuoQHr-SkHiQpmSFRhyt7wwys','chocolate',2017,2055),
   ('WBAPH7G54AN907112', 'Ferrari 612 Scaglietti','The 612 Scaglietti is equipped with a 5.7-liter V12 that develops 540 horsepower at 7,250 rpm and 434 pound-feet of torque at 5,250 rpm. ... According to Ferrari, the 612 Scaglietti is capable of sprinting from zero to 60 mph in 4.2 seconds and hitting a top speed just shy of 200 mph.', 88978, 5, true, 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRkM8QhARSm08LHVqm0bZ4jpK4tGo0oTC_H0sFxDPa7PpWlXAmb', 'yellow',2020,1777);
 
-INSERT INTO reviews(reviewer, content,rating,car_id) 
+INSERT INTO reviews(car_id,reviewer, content,rev_rating) 
 VALUES
-("Mk","My favorite car",5,1),
-("Jack","This car is nice but too expensive for me",5,1),
-("Leo","I will be there to get one of this car",5,3),
-("Baki","Just love this car, get it one day",5,2),
-("Sall","Famous one, this car, i love it.",5,6),
-("Poter","Best car ever",5,5),
-("Meriam","Joke, this is too expensive",4,3),
-("Nyan","My favorite car, i will have it!!!",5,1);
+(1,'Mk','My favorite car',5),
+(1,'Jack','This car is nice but too expensive for me',5),
+(3,'Leo','I will be there to get one of this car',5),
+(2,'Baki','Just love this car, get it one day',5),
+(6,'Sall','Famous one, this car, i love it.',5),
+(5,'Poter','Best car ever',5),
+(3,'Meriam','Joke, this is too expensive',4),
+(1,'Nyan','My favorite car, i will have it!!!',5);
