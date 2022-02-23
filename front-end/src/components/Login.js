@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-function Register() {
+
+function Login() {
   const [state, setState] = useState({
     username: "",
-    email: "",
     password: "",
   });
   const handleTextChange = (e) => {
@@ -14,7 +14,7 @@ function Register() {
   };
 
   return (
-    <div className="register">
+    <div className="login">
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
         <br />
@@ -28,18 +28,7 @@ function Register() {
           required
         />
         <hr />
-        <label htmlFor="email">Email</label>
-        <br />
-        <input
-          type="email"
-          id="email"
-          value={state.email}
-          onChange={handleTextChange}
-          placeholder="Email..."
-          required
-        />
-        <hr />
-        <br />
+
         <input
           type="password"
           id="password"
@@ -49,13 +38,13 @@ function Register() {
           required
         />
         <hr />
-        <button type="submit">Continue</button>
+        <button type="submit">Login</button>
       </form>
       <div>
-        <Link to="/login">Already have an account?</Link>
+        <Link to="/register">Don't have an account?</Link>
       </div>
     </div>
   );
 }
 
-export default Register;
+export default Login;

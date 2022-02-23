@@ -26,6 +26,9 @@
   margin-top: 75px;
 }
 .home {
+  font-family: "Times New Roman", Times, serif;
+}
+.home h1 {
   font-family: "Shizuru", cursive;
 }
 .cars {
@@ -111,4 +114,10 @@ input[type="submit"] {
 }
 .review-form {
   margin-bottom: 50px;
+}
+.register button,
+.login button {
+  background-color: green;
+  border: 2px solid black;
+  border-radius: 5px;
 }

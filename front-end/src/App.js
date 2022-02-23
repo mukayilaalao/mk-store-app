@@ -9,6 +9,8 @@ import New from "./pages/New";
 import Home from "./pages/Home";
 import ShoppingCart from "./components/ShoppingCart";
 import { useState } from "react";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -24,6 +26,8 @@ const App = () => {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/cars" element={<Index />} />
         <Route path="/cars/new" element={<New />} />
         <Route
