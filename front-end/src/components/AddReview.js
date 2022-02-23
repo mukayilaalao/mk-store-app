@@ -9,8 +9,9 @@ function AddReview({ setReviews, reviews }) {
   const addReview = (rev) => {
     axios
       .post(`${API}/cars/${id}/reviews`, rev)
-      .then(() => {
-        setReviews([...reviews, rev]);
+      .then((res) => {
+        const newReview = res.data.result;
+        setReviews([...reviews, newReview]);
       })
       .catch((e) => console.log(e));
   };
