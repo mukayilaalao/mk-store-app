@@ -19,3 +19,7 @@ VALUES
 (5,'Poter','Best car ever',5),
 (3,'Meriam','Joke, this is too expensive',4),
 (1,'Nyan','My favorite car, i will have it!!!',5);
+
+INSERT INTO users(username,email,password) 
+VALUES
+('admin','admin@gmail.com','Administrator');

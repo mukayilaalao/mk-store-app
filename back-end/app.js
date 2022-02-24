@@ -5,6 +5,7 @@ const express = require("express");
 // CONFIGURATION
 const app = express();
 const router = require("./controllers/cars.js");
+const usersController = require("./controllers/users.js");
 // MIDDLEWARE
 app.use(cors());
 app.use(express.json()); // Parse incoming JSON
@@ -14,6 +15,7 @@ app.get("/", (req, res) => {
   res.send("Hello, world!\n Welcome to the backend engine");
 });
 app.use("/cars", router);
+app.use("/users", usersController);
 app.get("*", (req, res) => {
   res.status(404).send({ success: false, result: "general error" });
 });

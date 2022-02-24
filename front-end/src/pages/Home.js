@@ -10,10 +10,10 @@ function Home() {
       </h1>
       <section>
         <h4>
-          <Link to="/login">Login</Link>
+          <Link to="/users/login">Login</Link>
         </h4>
         <p>
-          <Link to="/register">Sign Up</Link>
+          <Link to="/users/register">Sign Up</Link>
         </p>
       </section>
       <FeaturedCars />
