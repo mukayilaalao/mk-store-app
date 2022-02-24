@@ -1,10 +1,7 @@
 const express = require("express");
 //secure pass
 const bcrypt = require("bcrypt");
-//manage session
-const session = require("express-session");
-//
-const flash = require("express-flash");
+
 const usersController = express.Router();
 const db = require("../db/dbConfig.js");
 //middleware func

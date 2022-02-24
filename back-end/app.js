@@ -1,6 +1,8 @@
 // DEPENDENCIES
 const cors = require("cors");
 const express = require("express");
+const session = require("express-session"); //manage session
+//const flash = require("express-flash"); //flash messages
 
 // CONFIGURATION
 const app = express();
@@ -9,6 +11,14 @@ const usersController = require("./controllers/users.js");
 // MIDDLEWARE
 app.use(cors());
 app.use(express.json()); // Parse incoming JSON
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+//app.use(flash());
 
 // ROUTES
 app.get("/", (req, res) => {
