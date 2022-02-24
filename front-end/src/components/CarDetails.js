@@ -51,7 +51,7 @@ function CarDetails({ addToTheCart }) {
           <button onClick={handleDelete}>Delete</button>
         </div>
       </div>
-      <Reviews />
+      <Reviews carName={car.name} />
     </article>
   );
 }

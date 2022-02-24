@@ -6,7 +6,7 @@ import AddReview from "./AddReview";
 
 const API = process.env.REACT_APP_API_URL;
 
-function Reviews() {
+function Reviews({ carName }) {
   const [reviews, setReviews] = useState([]);
   //see reviews or not
   const [reviewsView, setReviewsView] = useState(false);
@@ -38,7 +38,7 @@ function Reviews() {
       <button onClick={handleReviews}>
         {" "}
         <div className="reviews-div">
-          <h3>See This Car Reviews 🏎️</h3>
+          <h3>See {carName} Reviews 🏎️</h3>
           <div>👇🏽</div>
         </div>
       </button>
