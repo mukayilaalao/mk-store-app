@@ -2,6 +2,7 @@
 const cors = require("cors");
 const express = require("express");
 const session = require("express-session"); //manage session
+const passport = require("passport");
 //const flash = require("express-flash"); //flash messages
 
 // CONFIGURATION
@@ -11,6 +12,7 @@ const usersController = require("./controllers/users.js");
 // MIDDLEWARE
 app.use(cors());
 app.use(express.json()); // Parse incoming JSON
+//security middl
 app.use(
   session({
     secret: "secret",
@@ -18,6 +20,8 @@ app.use(
     saveUninitialized: false,
   })
 );
+app.use(passport.initialize);
+app.use(passport.session);
 //app.use(flash());
 
 // ROUTES

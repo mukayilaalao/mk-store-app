@@ -1,11 +1,15 @@
 const express = require("express");
 //secure pass
 const bcrypt = require("bcrypt");
-
+const passport = require("passport");
 const usersController = express.Router();
 const db = require("../db/dbConfig.js");
+const initialize = require("../passportConfig.js");
 //middleware func
 const { regValidation } = require("../validation/users.js");
+
+//initialize passport
+initialize(passport);
 
 //register
 usersController.post("/register", regValidation, async (req, res) => {
