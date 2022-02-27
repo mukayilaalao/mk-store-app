@@ -8,15 +8,32 @@ import Edit from "./pages/Edit";
 import New from "./pages/New";
 import Home from "./pages/Home";
 import ShoppingCart from "./components/ShoppingCart";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import LogOut from "./components/LogOut";
 
 const App = () => {
   const [cart, setCart] = useState([]);
   const addToTheCart = (car) => {
     setCart([...cart, car]);
   };
+  const [state, setState] = useState({
+    username: "",
+    password: "",
+  });
+  //keep track when user wanna log out
+  const [isLogout, setIsLogout] = useState(false);
+  const handleTextChange = (e) => {
+    setState({ ...state, [e.target.id]: e.target.value });
+  };
+  useEffect(() => {
+    if (isLogout)
+      setState({
+        username: "",
+        password: "",
+      });
+  }, [isLogout]);
   const removeFromTheCart = (carToRemoved) => {
     const newCart = [...cart].filter((car) => car.id !== carToRemoved.id);
     setCart(newCart);
@@ -25,9 +42,18 @@ const App = () => {
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="users/register" element={<Register />} />
-        <Route path="users/login" element={<Login />} />
+        <Route path="/" element={<Home username={state.username} />} />
+        <Route path="/users/register" element={<Register />} />
+        <Route
+          path="/users/login"
+          element={<Login handleTextChange={handleTextChange} state={state} />}
+        />
+        <Route
+          path="/users/logout"
+          element={
+            <LogOut username={state.username} setIsLogout={setIsLogout} />
+          }
+        />
         <Route path="/cars" element={<Index />} />
         <Route path="/cars/new" element={<New />} />
         <Route

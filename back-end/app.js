@@ -3,7 +3,7 @@ const cors = require("cors");
 const express = require("express");
 const session = require("express-session"); //manage session
 const passport = require("passport");
-//const flash = require("express-flash"); //flash messages
+const flash = require("express-flash"); //flash messages
 
 // CONFIGURATION
 const app = express();
@@ -20,9 +20,9 @@ app.use(
     saveUninitialized: false,
   })
 );
-app.use(passport.initialize);
-app.use(passport.session);
-//app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 // ROUTES
 app.get("/", (req, res) => {

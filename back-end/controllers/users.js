@@ -30,8 +30,8 @@ usersController.post("/register", regValidation, async (req, res) => {
     });
   }
 });
-usersController.post("/login", async (req, res) => {
-  console.log(req.body);
+usersController.post("/login", passport.authenticate("local"), (req, res) => {
+  res.status(200).json({ success: true });
 });
 
 module.exports = usersController;

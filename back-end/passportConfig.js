@@ -6,17 +6,18 @@ const initialize = (passport) => {
   const authenticateUser = (username, password, done) => {
     db.one("SELECT * FROM users WHERE username=$1", username)
       .then((user) => {
-        console.log(user);
+        // console.log(user);
+        // console.log(username, password);
         if (user.id) {
-          bcrypt.compare(password, user.passport, (err, isCorrect) => {
+          bcrypt.compare(password, user.password, (err, isCorrect) => {
             if (err) throw err;
             if (isCorrect) return done(null, user);
             else
               return done(null, false, { message: "Password is not correct" });
           });
-        } else done(null, false, "user didn't sign up");
+        } else done(null, false, { message: "user didn't sign up" });
       })
-      .catch((e) => console.log("catch", { catch: e }));
+      .catch(() => done(null, false, { message: "user didn't sign up" }));
   };
   passport.use(
     new LocalStrategy(

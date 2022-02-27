@@ -1,20 +1,24 @@
+import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function Login() {
-  const [state, setState] = useState({
-    username: "",
-    password: "",
-  });
-  const handleTextChange = (e) => {
-    setState({ ...state, [e.target.id]: e.target.value });
-  };
+const API = process.env.REACT_APP_API_URL;
+function Login({ handleTextChange, state }) {
+  const navigate = useNavigate();
+  const [err, setErr] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(state);
+    axios
+      .post(`${API}/users/login`, state)
+      .then((res) => navigate("/"))
+      .catch((e) => setErr(e.response.data));
   };
 
   return (
     <div className="login">
+      <p className="error">{err}</p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
         <br />
@@ -22,18 +26,19 @@ function Login() {
           type="text"
           id="username"
           value={state.username}
-          onChange={handleTextChange}
+          onChange={(e) => handleTextChange(e)}
           placeholder="Username..."
           autoFocus
           required
         />
         <hr />
-
+        <label htmlFor="password">Password</label>
+        <br />
         <input
           type="password"
           id="password"
           value={state.password}
-          onChange={handleTextChange}
+          onChange={(e) => handleTextChange(e)}
           placeholder="Password..."
           required
         />
