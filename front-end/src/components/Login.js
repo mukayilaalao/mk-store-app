@@ -3,16 +3,19 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const API = process.env.REACT_APP_API_URL;
-function Login({ handleTextChange, state }) {
+function Login({ handleTextChange, setState, state }) {
   const navigate = useNavigate();
   const [err, setErr] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(state);
+    //console.log(state);
     axios
       .post(`${API}/users/login`, state)
-      .then((res) => navigate("/"))
+      .then((res) => {
+        setState({ ...state, isLogout: false });
+        navigate("/");
+      })
       .catch((e) => setErr(e.response.data));
   };
 

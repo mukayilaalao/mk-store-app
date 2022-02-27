@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import FeaturedCars from "../components/FeaturedCars";
 
-function Home({ username }) {
+function Home({ username, isLogout }) {
   return (
     <div className="home">
-      {username ? (
+      {username && !isLogout ? (
         <section className="welcome-log">
           <h3>Welcome {username}!!</h3>
           <Link to="/users/logout">Logout</Link>

@@ -30,6 +30,10 @@ usersController.post("/register", regValidation, async (req, res) => {
     });
   }
 });
+usersController.get("/logout", (req, res) => {
+  req.logOut();
+  res.status(200).json({ success: true });
+});
 usersController.post("/login", passport.authenticate("local"), (req, res) => {
   res.status(200).json({ success: true });
 });
