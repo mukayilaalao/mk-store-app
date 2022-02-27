@@ -26,7 +26,12 @@
   margin-top: 75px;
 }
 .home {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   font-family: "Times New Roman", Times, serif;
+}
+.welcome-log {
+  grid-column: 3/4;
 }
 .home h1 {
   font-family: "Shizuru", cursive;
@@ -123,4 +128,9 @@ input[type="submit"] {
 }
 .error {
   color: red;
+}
+.login,
+.register {
+  width: 50%;
+  margin: 50px auto;
 }

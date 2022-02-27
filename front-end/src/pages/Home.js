@@ -5,9 +5,12 @@ function Home({ username }) {
   return (
     <div className="home">
       {username ? (
-        <h3>Welcome {username}!!</h3>
+        <section className="welcome-log">
+          <h3>Welcome {username}!!</h3>
+          <Link to="/users/logout">Logout</Link>
+        </section>
       ) : (
-        <section>
+        <section className="welcome-log">
           <h4>
             <Link to="/users/login">Login</Link>
           </h4>
@@ -16,13 +19,14 @@ function Home({ username }) {
           </p>
         </section>
       )}
+      <section>
+        <h1>
+          Mk Dealership, we appreciate your business, keep navigating, good
+          deals are waiting....
+        </h1>
 
-      <h1>
-        Mk Dealership, we appreciate your business, keep navigating, good deals
-        are waiting....
-      </h1>
-
-      <FeaturedCars />
+        <FeaturedCars />
+      </section>
     </div>
   );
 }
