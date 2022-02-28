@@ -6,12 +6,11 @@ const initialize = (passport) => {
   const authenticateUser = (username, password, done) => {
     db.one("SELECT * FROM users WHERE username=$1", username)
       .then((user) => {
-        // console.log(user);
-        // console.log(username, password);
         if (user.id) {
           bcrypt.compare(password, user.password, (err, isCorrect) => {
             if (err) throw err;
-            if (isCorrect) return done(null, user);
+            if (isCorrect)
+              return done(null, user, { message: "Successfully logged in!" });
             else
               return done(null, false, { message: "Password is not correct" });
           });

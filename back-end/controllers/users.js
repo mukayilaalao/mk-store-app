@@ -23,7 +23,6 @@ usersController.post("/register", regValidation, async (req, res) => {
     );
     res.json({ success: true, result: user });
   } catch (error) {
-    console.log(error);
     res.status(422).json({
       success: false,
       result: "Error while creating account, email already existed",
@@ -35,7 +34,14 @@ usersController.get("/logout", (req, res) => {
   res.status(200).json({ success: true });
 });
 usersController.post("/login", passport.authenticate("local"), (req, res) => {
-  res.status(200).json({ success: true });
+  const { username } = req.body;
+  db.one("SELECT * FROM users WHERE username=$1", username)
+    .then((user) => {
+      if (user.id) res.status(200).json({ success: true, result: user });
+    })
+    .catch(() =>
+      res.json({ success: false, result: "Register first please!" })
+    );
 });
 
 module.exports = usersController;

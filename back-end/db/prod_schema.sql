@@ -26,3 +26,12 @@ CREATE TABLE reviews (
     car_id INTEGER REFERENCES cars (id)
     ON DELETE CASCADE
 );
+
+--users table
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(150) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    UNIQUE(username,email)
+);
