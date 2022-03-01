@@ -36,3 +36,18 @@ CREATE TABLE users (
     email VARCHAR(150) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
 );
+--orders table
+CREATE TABLE orders(
+    id SERIAL PRIMARY KEY,
+    car_id INTEGER
+    user_id INTEGER REFERENCES users(id)
+    ON DELETE CASCADE
+);
+
+--roles table
+CREATE TABLE roles (
+    id SERIAL PRIMARY KEY,
+    role VARCHAR(5) DEFAULT 'basic',
+    user_id INTEGER REFERENCES users(id)
+    ON DELETE CASCADE
+)

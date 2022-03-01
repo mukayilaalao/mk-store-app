@@ -3,11 +3,13 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const usersController = express.Router();
+//orders controller
+const orders = require("./orders.js");
 const db = require("../db/dbConfig.js");
 const initialize = require("../passportConfig.js");
 //middleware func
 const { regValidation } = require("../validation/users.js");
-
+usersController.use("/:user_id/orders", orders);
 //initialize passport
 initialize(passport);
 
