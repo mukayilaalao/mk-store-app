@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Form from "./Form";
 
 const API = process.env.REACT_APP_API_URL;
-function EditCar() {
+function EditCar({ role }) {
   const [car, setCar] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
@@ -20,7 +20,11 @@ function EditCar() {
       .then(() => navigate("/cars"))
       .catch((e) => console.log(e));
   };
-  return <Form carInfo={car} submitHandler={editACar} />;
+  return (
+    <>
+      {role === "admin" ? <Form carInfo={car} submitHandler={editACar} /> : ""}
+    </>
+  );
 }
 
 export default EditCar;

@@ -1,39 +1,29 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Login() {
-  const [state, setState] = useState({
-    username: "",
-    password: "",
-  });
-  const handleTextChange = (e) => {
-    setState({ ...state, [e.target.id]: e.target.value });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
+function Login({ handleTextChange, state, err, handleSubmit }) {
   return (
     <div className="login">
-      <form onSubmit={handleSubmit}>
+      <p className="error">{err}</p>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="username">Username</label>
         <br />
         <input
           type="text"
           id="username"
           value={state.username}
-          onChange={handleTextChange}
+          onChange={(e) => handleTextChange(e)}
           placeholder="Username..."
           autoFocus
           required
         />
         <hr />
-
+        <label htmlFor="password">Password</label>
+        <br />
         <input
           type="password"
           id="password"
           value={state.password}
-          onChange={handleTextChange}
+          onChange={(e) => handleTextChange(e)}
           placeholder="Password..."
           required
         />
@@ -41,7 +31,7 @@ function Login() {
         <button type="submit">Login</button>
       </form>
       <div>
-        <Link to="/register">Don't have an account?</Link>
+        <Link to="/users/register">Don't have an account?</Link>
       </div>
     </div>
   );
