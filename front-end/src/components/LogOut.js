@@ -8,7 +8,7 @@ function LogOut({ username, setState, state }) {
     axios
       .get(`${API}/users/logout`)
       .then(() => {
-        setState({ ...state, password: "", isLogout: true });
+        setState({ ...state, isLogout: true });
       })
       .catch((e) => console.log(e));
   }, []);

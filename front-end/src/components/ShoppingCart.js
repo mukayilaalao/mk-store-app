@@ -1,7 +1,7 @@
 import formatPrice from "../helpers/moneyFormat";
 import formatting from "../helpers/format";
 import calculateTotal from "../helpers/calculateTotal";
-
+import { Link } from "react-router-dom";
 function ShoppingCart({ cart, removeFromTheCart }) {
   return (
     <div>
@@ -33,7 +33,9 @@ function ShoppingCart({ cart, removeFromTheCart }) {
           <h3>
             Total: {formatting(formatPrice(calculateTotal(cart) * 1.08875))}
           </h3>
-          <button>Pay Now</button>
+          <Link to="/users/orders">
+            <button>Order Now</button>
+          </Link>
         </section>
       ) : (
         ""

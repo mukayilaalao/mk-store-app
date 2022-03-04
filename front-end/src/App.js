@@ -1,4 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import axios from "axios";
+
+import { useNavigate } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Foot from "./components/Foot";
 import FourOFour from "./pages/FourOFour";
@@ -12,18 +15,44 @@ import { useState } from "react";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import LogOut from "./components/LogOut";
+import Orders from "./pages/Orders";
 
+const API = process.env.REACT_APP_API_URL;
 const App = () => {
   const [cart, setCart] = useState([]);
   const addToTheCart = (car) => {
-    setCart([...cart, car]);
+    if (cart.every((pCar) => pCar.id !== car.id)) setCart([...cart, car]);
   };
+  //login form state
   const [state, setState] = useState({
     username: "",
     password: "",
-    isLogout: false,
   });
+  //user account state
+  const [userAccount, setUserAccount] = useState({});
+  const navigate = useNavigate();
+  //login error
+  const [err, setErr] = useState("");
+  //login state
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    //console.log(state);
+    axios
+      .post(`${API}/users/login`, state)
+      .then((res) => {
+        console.log(res.data);
 
+        setUserAccount({ isLogout: false, ...res.data.result });
+        navigate("/");
+      })
+      .catch((e) => {
+        setErr(
+          typeof e.response.data === "string"
+            ? e.response.data
+            : e.response.data.result
+        );
+      });
+  };
   const handleTextChange = (e) => {
     setState({ ...state, [e.target.id]: e.target.value });
   };
@@ -33,7 +62,7 @@ const App = () => {
     setCart(newCart);
   };
   return (
-    <Router>
+    <div>
       <NavBar />
       <Routes>
         <Route
@@ -46,8 +75,8 @@ const App = () => {
           element={
             <Login
               handleTextChange={handleTextChange}
-              state={state}
-              setState={setState}
+              handleSubmit={handleSubmit}
+              err={err}
             />
           }
         />
@@ -55,24 +84,28 @@ const App = () => {
           path="/users/logout"
           element={
             <LogOut
-              username={state.username}
+              username={userAccount.username}
               setState={setState}
               state={state}
             />
           }
         />
+        <Route path="/users/:id/orders" element={<Orders />} />
         <Route path="/cars" element={<Index />} />
-        <Route path="/cars/new" element={<New />} />
+        <Route path="/cars/new" element={<New role={userAccount.role} />} />
         <Route
           path="/cars/:id"
-          element={<Show addToTheCart={addToTheCart} />}
+          element={<Show addToTheCart={addToTheCart} role={userAccount.role} />}
         />
-        <Route path="/cars/:id/edit" element={<Edit />} />
+        <Route
+          path="/cars/:id/edit"
+          element={<Edit role={userAccount.role} />}
+        />
         <Route path="*" element={<FourOFour />} />
       </Routes>
       <ShoppingCart cart={cart} removeFromTheCart={removeFromTheCart} />
       <Foot />
-    </Router>
+    </div>
   );
 };
 

@@ -6,7 +6,8 @@ import formatPrice from "../helpers/moneyFormat";
 import formatting from "../helpers/format";
 
 const API = process.env.REACT_APP_API_URL;
-function CarDetails({ addToTheCart }) {
+
+function CarDetails({ addToTheCart, role }) {
   const [car, setCar] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
@@ -43,12 +44,20 @@ function CarDetails({ addToTheCart }) {
           </Link>
         </div>
         <div>
-          <Link to={`/cars/${id}/edit`}>
-            <button>Edit</button>
-          </Link>
+          {role === "admin" ? (
+            <Link to={`/cars/${id}/edit`}>
+              <button>Edit</button>
+            </Link>
+          ) : (
+            ""
+          )}
         </div>
         <div>
-          <button onClick={handleDelete}>Delete</button>
+          {role === "admin" ? (
+            <button onClick={handleDelete}>Delete</button>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <Reviews />
