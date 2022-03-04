@@ -20,11 +20,7 @@ function EditCar({ role }) {
       .then(() => navigate("/cars"))
       .catch((e) => console.log(e));
   };
-  return (
-    <>
-      {role === "admin" ? <Form carInfo={car} submitHandler={editACar} /> : ""}
-    </>
-  );
+  return <Form carInfo={car} submitHandler={editACar} />;
 }
 
 export default EditCar;

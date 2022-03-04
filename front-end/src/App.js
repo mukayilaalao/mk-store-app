@@ -40,17 +40,17 @@ const App = () => {
     axios
       .post(`${API}/users/login`, state)
       .then((res) => {
-        console.log(res.data);
-
+        setState({});
         setUserAccount({ isLogout: false, ...res.data.result });
         navigate("/");
       })
       .catch((e) => {
-        setErr(
-          typeof e.response.data === "string"
-            ? e.response.data
-            : e.response.data.result
-        );
+        if (e.response)
+          setErr(
+            typeof e.response.data === "string"
+              ? e.response.data
+              : e.response.data.result
+          );
       });
   };
   const handleTextChange = (e) => {
@@ -67,13 +67,19 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={<Home username={state.username} isLogout={state.isLogout} />}
+          element={
+            <Home
+              username={userAccount.username}
+              isLogout={userAccount.isLogout}
+            />
+          }
         />
         <Route path="/users/register" element={<Register />} />
         <Route
           path="/users/login"
           element={
             <Login
+              state={state}
               handleTextChange={handleTextChange}
               handleSubmit={handleSubmit}
               err={err}
@@ -83,23 +89,31 @@ const App = () => {
         <Route
           path="/users/logout"
           element={
-            <LogOut
-              username={userAccount.username}
-              setState={setState}
-              state={state}
-            />
+            <LogOut setUserAccount={setUserAccount} userAccount={userAccount} />
           }
         />
         <Route path="/users/:id/orders" element={<Orders />} />
         <Route path="/cars" element={<Index />} />
-        <Route path="/cars/new" element={<New role={userAccount.role} />} />
+        <Route
+          path="/cars/new"
+          element={
+            <New role={!userAccount.role ? "basic" : userAccount.role} />
+          }
+        />
         <Route
           path="/cars/:id"
-          element={<Show addToTheCart={addToTheCart} role={userAccount.role} />}
+          element={
+            <Show
+              addToTheCart={addToTheCart}
+              role={!userAccount.role ? "basic" : userAccount.role}
+            />
+          }
         />
         <Route
           path="/cars/:id/edit"
-          element={<Edit role={userAccount.role} />}
+          element={
+            <Edit role={!userAccount.role ? "basic" : userAccount.role} />
+          }
         />
         <Route path="*" element={<FourOFour />} />
       </Routes>
