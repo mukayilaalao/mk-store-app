@@ -39,7 +39,7 @@ CREATE TABLE users (
 --orders table
 CREATE TABLE orders(
     id SERIAL PRIMARY KEY,
-    car_id INTEGER,
+    car_id INTEGER NOT NULL,
     user_id INTEGER REFERENCES users(id)
     ON DELETE CASCADE
 );

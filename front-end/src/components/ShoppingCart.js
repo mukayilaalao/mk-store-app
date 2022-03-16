@@ -2,7 +2,27 @@ import formatPrice from "../helpers/moneyFormat";
 import formatting from "../helpers/format";
 import calculateTotal from "../helpers/calculateTotal";
 import { Link } from "react-router-dom";
+import axios from "axios";
+const API = process.env.REACT_APP_API_URL;
+
 function ShoppingCart({ cart, removeFromTheCart, userAccount }) {
+  const handleOrder = () => {
+    console.log("cart:", cart);
+    const allOrderArray = [];
+    for (let i = 0; i < cart.length; i++) {
+      allOrderArray.push(
+        axios.post(`${API}/users/${userAccount.user_id}/orders`, cart[i])
+      );
+    }
+    axios
+      .all(allOrderArray)
+      .then(
+        axios.spread((...responses) => {
+          console.log(responses);
+        })
+      )
+      .catch((e) => console.log(e));
+  };
   return (
     <div>
       {cart.length ? (
@@ -35,7 +55,7 @@ function ShoppingCart({ cart, removeFromTheCart, userAccount }) {
           </h3>
           {userAccount.isLogout === false ? (
             <Link to={`/users/${userAccount.user_id}/orders`}>
-              <button>Order Now</button>
+              <button onClick={handleOrder}>Order Now</button>
             </Link>
           ) : (
             <Link to="users/login">

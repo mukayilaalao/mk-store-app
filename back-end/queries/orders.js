@@ -41,7 +41,7 @@ const createOrder = async (user_id, order) => {
   try {
     const createdOrder = await db.one(
       "INSERT INTO orders(user_id,car_id) VALUES($1,$2) RETURNING *",
-      [user_id, order.car_id]
+      [user_id, order.id]
     );
     return createdOrder;
   } catch (error) {
