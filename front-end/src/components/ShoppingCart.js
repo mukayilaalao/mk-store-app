@@ -2,7 +2,7 @@ import formatPrice from "../helpers/moneyFormat";
 import formatting from "../helpers/format";
 import calculateTotal from "../helpers/calculateTotal";
 import { Link } from "react-router-dom";
-function ShoppingCart({ cart, removeFromTheCart }) {
+function ShoppingCart({ cart, removeFromTheCart, userAccount }) {
   return (
     <div>
       {cart.length ? (
@@ -33,9 +33,15 @@ function ShoppingCart({ cart, removeFromTheCart }) {
           <h3>
             Total: {formatting(formatPrice(calculateTotal(cart) * 1.08875))}
           </h3>
-          <Link to="/users/orders">
-            <button>Order Now</button>
-          </Link>
+          {userAccount.isLogout === false ? (
+            <Link to={`/users/${userAccount.user_id}/orders`}>
+              <button>Order Now</button>
+            </Link>
+          ) : (
+            <Link to="users/login">
+              <button>Please Login first</button>
+            </Link>
+          )}
         </section>
       ) : (
         ""

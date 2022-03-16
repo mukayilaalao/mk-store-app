@@ -40,7 +40,10 @@ const App = () => {
     axios
       .post(`${API}/users/login`, state)
       .then((res) => {
-        setState({});
+        setState({
+          username: "",
+          password: "",
+        });
         setUserAccount({ isLogout: false, ...res.data.result });
         navigate("/");
       })
@@ -63,12 +66,13 @@ const App = () => {
   };
   return (
     <div>
-      <NavBar />
+      <NavBar username={userAccount.username} />
       <Routes>
         <Route
           path="/"
           element={
             <Home
+              cart={cart}
               username={userAccount.username}
               isLogout={userAccount.isLogout}
             />
@@ -92,7 +96,7 @@ const App = () => {
             <LogOut setUserAccount={setUserAccount} userAccount={userAccount} />
           }
         />
-        <Route path="/users/:id/orders" element={<Orders />} />
+        <Route path="/users/:user_id/orders" element={<Orders />} />
         <Route path="/cars" element={<Index />} />
         <Route
           path="/cars/new"
@@ -117,7 +121,11 @@ const App = () => {
         />
         <Route path="*" element={<FourOFour />} />
       </Routes>
-      <ShoppingCart cart={cart} removeFromTheCart={removeFromTheCart} />
+      <ShoppingCart
+        cart={cart}
+        removeFromTheCart={removeFromTheCart}
+        userAccount={userAccount}
+      />
       <Foot />
     </div>
   );

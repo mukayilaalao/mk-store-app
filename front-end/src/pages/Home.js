@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import FeaturedCars from "../components/FeaturedCars";
 
-function Home({ username, isLogout }) {
+function Home({ username, isLogout, cart, user_id }) {
   return (
     <div className="home">
       {username && !isLogout ? (
