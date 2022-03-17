@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
+import FlashMessage from "react-flash-message";
 
 function Login({ handleTextChange, state, err, handleSubmit }) {
   return (
     <div className="login">
-      <p className="error">{err}</p>
+      <FlashMessage>
+        <p className="error">{err}</p>
+      </FlashMessage>
       <form onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="username">Username</label>
         <br />

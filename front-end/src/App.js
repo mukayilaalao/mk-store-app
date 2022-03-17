@@ -20,6 +20,7 @@ import Orders from "./pages/Orders";
 const API = process.env.REACT_APP_API_URL;
 const App = () => {
   const [cart, setCart] = useState([]);
+  const [message, setMessage] = useState("");
   const addToTheCart = (car) => {
     if (cart.every((pCar) => pCar.id !== car.id)) setCart([...cart, car]);
   };
@@ -96,7 +97,10 @@ const App = () => {
             <LogOut setUserAccount={setUserAccount} userAccount={userAccount} />
           }
         />
-        <Route path="/users/:user_id/orders" element={<Orders />} />
+        <Route
+          path="/users/:user_id/orders"
+          element={<Orders message={message} />}
+        />
         <Route path="/cars" element={<Index />} />
         <Route
           path="/cars/new"
@@ -122,6 +126,7 @@ const App = () => {
         <Route path="*" element={<FourOFour />} />
       </Routes>
       <ShoppingCart
+        setMessage={setMessage}
         cart={cart}
         removeFromTheCart={removeFromTheCart}
         userAccount={userAccount}

@@ -35,6 +35,7 @@ function CarDetails({ addToTheCart, role }) {
         <h5>Price: {formatting(formatPrice(car.price))}</h5>
         <p className="description">{car.description}</p>
         <p>Rating: {car.rating}</p>
+        <p>Status:{car.status}</p>
         <button onClick={() => addToTheCart(car)}>Add To Cart</button>
       </div>
       <div className="showBackEditDelete">

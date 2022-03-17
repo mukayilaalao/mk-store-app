@@ -14,6 +14,7 @@ function Car({ car }) {
       </div>
       <p>{car.color}</p>
       <h4>{formatting(formatPrice(car.price))}</h4>
+      <h5>{car.status}</h5>
     </section>
   );
 }

@@ -15,7 +15,8 @@ CREATE TABLE cars (
     image TEXT,
     color VARCHAR(20),
     year VARCHAR(4) NOT NULL,
-    mileage INT NOT NULL
+    mileage INT NOT NULL,
+    status VARCHAR(10)
 );
 
 --reviews table

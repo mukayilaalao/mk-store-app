@@ -3,9 +3,11 @@ import formatting from "../helpers/format";
 import calculateTotal from "../helpers/calculateTotal";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
 const API = process.env.REACT_APP_API_URL;
 
-function ShoppingCart({ cart, removeFromTheCart, userAccount }) {
+function ShoppingCart({ cart, removeFromTheCart, userAccount, setMessage }) {
+  //const navigate = useNavigate();
   const handleOrder = () => {
     console.log("cart:", cart);
     const allOrderArray = [];
@@ -18,7 +20,9 @@ function ShoppingCart({ cart, removeFromTheCart, userAccount }) {
       .all(allOrderArray)
       .then(
         axios.spread((...responses) => {
-          console.log(responses);
+          //console.log(responses);
+          setMessage("Order completed, Thank you!");
+          //navigate(`/users/${userAccount.user_id}/orders`);
         })
       )
       .catch((e) => console.log(e));
