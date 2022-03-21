@@ -1,28 +1,47 @@
 import formatPrice from "../helpers/moneyFormat";
 import formatting from "../helpers/format";
 import calculateTotal from "../helpers/calculateTotal";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const API = process.env.REACT_APP_API_URL;
 
-function ShoppingCart({ cart, removeFromTheCart, userAccount, setMessage }) {
-  //const navigate = useNavigate();
+function ShoppingCart({
+  cart,
+  setCart,
+  removeFromTheCart,
+  userAccount,
+  setMessage,
+}) {
+  const navigate = useNavigate();
   const handleOrder = () => {
     console.log("cart:", cart);
     const allOrderArray = [];
+    const updateCarsArray = [];
     for (let i = 0; i < cart.length; i++) {
       allOrderArray.push(
         axios.post(`${API}/users/${userAccount.user_id}/orders`, cart[i])
+      );
+      updateCarsArray.push(
+        axios.put(`${API}/cars/${cart[i].id}`, { ...cart[i], status: "Sold" })
       );
     }
     axios
       .all(allOrderArray)
       .then(
         axios.spread((...responses) => {
-          //console.log(responses);
+          //set order success message
           setMessage("Order completed, Thank you!");
-          //navigate(`/users/${userAccount.user_id}/orders`);
+          //clear the shopping cart
+          setCart([]);
+          //update selected cars
+          axios.all(updateCarsArray).then(
+            axios.spread((...res) => {
+              //console.log(res);
+              const timer = setTimeout(() => navigate("/cars"), 6000);
+              clearTimeout(timer);
+            })
+          );
         })
       )
       .catch((e) => console.log(e));

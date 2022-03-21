@@ -10,6 +10,11 @@
   background-color: chocolate;
   height: 75px;
 }
+.user-log {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
 .nav-bar h1,
 .foot-section h2 {
   font-family: "Luckiest Guy", cursive;
@@ -133,4 +138,7 @@ input[type="submit"] {
 .register {
   width: 50%;
   margin: 50px auto;
+}
+.success-message {
+  color: green;
 }

@@ -4,10 +4,9 @@ import FeaturedCars from "../components/FeaturedCars";
 function Home({ username, isLogout, cart, user_id }) {
   return (
     <div className="home">
-      {username && !isLogout ? (
+      {username && isLogout === false ? (
         <section className="welcome-log">
           <h3>Welcome {username}!!</h3>
-          <Link to="/users/logout">Logout</Link>
         </section>
       ) : (
         <section className="welcome-log">

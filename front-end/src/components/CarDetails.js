@@ -4,10 +4,11 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import Reviews from "./Reviews";
 import formatPrice from "../helpers/moneyFormat";
 import formatting from "../helpers/format";
+import FlashMessage from "react-flash-message";
 
 const API = process.env.REACT_APP_API_URL;
 
-function CarDetails({ addToTheCart, role }) {
+function CarDetails({ addToTheCart, role, message }) {
   const [car, setCar] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
@@ -37,6 +38,18 @@ function CarDetails({ addToTheCart, role }) {
         <p>Rating: {car.rating}</p>
         <p>Status:{car.status}</p>
         <button onClick={() => addToTheCart(car)}>Add To Cart</button>
+        <div>
+          {message ? (
+            <FlashMessage duration={5000}>
+              <p className="error">
+                <strong>{message}</strong>
+                {"❌"}
+              </p>
+            </FlashMessage>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
       <div className="showBackEditDelete">
         <div>

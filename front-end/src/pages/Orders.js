@@ -4,7 +4,7 @@ function Orders({ message }) {
   return (
     <div>
       <FlashMessage duration={5000}>
-        <p>
+        <p className="success-message">
           <strong>{message}</strong>
           {"✅"}
         </p>

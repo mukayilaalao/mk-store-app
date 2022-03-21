@@ -20,9 +20,16 @@ import Orders from "./pages/Orders";
 const API = process.env.REACT_APP_API_URL;
 const App = () => {
   const [cart, setCart] = useState([]);
+  //order success message
   const [message, setMessage] = useState("");
   const addToTheCart = (car) => {
-    if (cart.every((pCar) => pCar.id !== car.id)) setCart([...cart, car]);
+    if (
+      cart.every((pCar) => pCar.id !== car.id) &&
+      car.status.toLowerCase() !== "sold"
+    )
+      setCart([...cart, car]);
+    else if (car.status.toLowerCase() === "sold")
+      setMessage("Sorry, this car is already sold!");
   };
   //login form state
   const [state, setState] = useState({
@@ -30,10 +37,15 @@ const App = () => {
     password: "",
   });
   //user account state
-  const [userAccount, setUserAccount] = useState({});
+  const [userAccount, setUserAccount] = useState({
+    isLogout: true,
+  });
   const navigate = useNavigate();
   //login error
-  const [err, setErr] = useState("");
+  const [errObj, setErrObj] = useState({
+    err: "",
+    showError: false,
+  });
   //login state
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,11 +62,14 @@ const App = () => {
       })
       .catch((e) => {
         if (e.response)
-          setErr(
-            typeof e.response.data === "string"
-              ? e.response.data
-              : e.response.data.result
-          );
+          setErrObj({
+            ...errObj,
+            err:
+              typeof e.response.data === "string"
+                ? e.response.data
+                : e.response.data.result,
+            showError: true,
+          });
       });
   };
   const handleTextChange = (e) => {
@@ -67,7 +82,7 @@ const App = () => {
   };
   return (
     <div>
-      <NavBar username={userAccount.username} />
+      <NavBar username={userAccount.username} isLogout={userAccount.isLogout} />
       <Routes>
         <Route
           path="/"
@@ -87,7 +102,7 @@ const App = () => {
               state={state}
               handleTextChange={handleTextChange}
               handleSubmit={handleSubmit}
-              err={err}
+              errObj={errObj}
             />
           }
         />
@@ -99,7 +114,9 @@ const App = () => {
         />
         <Route
           path="/users/:user_id/orders"
-          element={<Orders message={message} />}
+          element={
+            <Orders message={message.includes("order") ? message : ""} />
+          }
         />
         <Route path="/cars" element={<Index />} />
         <Route
@@ -113,6 +130,7 @@ const App = () => {
           element={
             <Show
               addToTheCart={addToTheCart}
+              message={message.includes("sold") ? message : ""}
               role={!userAccount.role ? "basic" : userAccount.role}
             />
           }
@@ -128,6 +146,7 @@ const App = () => {
       <ShoppingCart
         setMessage={setMessage}
         cart={cart}
+        setCart={setCart}
         removeFromTheCart={removeFromTheCart}
         userAccount={userAccount}
       />
