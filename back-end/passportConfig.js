@@ -10,6 +10,7 @@ const initialize = (passport) => {
           bcrypt.compare(password, user.password, (err, isCorrect) => {
             if (err) throw err;
             if (isCorrect)
+              //useless message as i am not using ejs
               return done(null, user, { message: "Successfully logged in!" });
             else
               return done(null, false, { message: "Password is not correct" });
