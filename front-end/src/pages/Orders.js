@@ -1,4 +1,5 @@
 import FlashMessage from "react-flash-message";
+import { Link } from "react-router-dom";
 
 function Orders({ message }) {
   return (
@@ -10,6 +11,7 @@ function Orders({ message }) {
         </p>
       </FlashMessage>
       <h3>Your Order:</h3>
+      <Link to="/cars">Continue Shopping</Link>
     </div>
   );
 }

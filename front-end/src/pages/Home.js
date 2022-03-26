@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import FeaturedCars from "../components/FeaturedCars";
 
-function Home({ username, isLogout, cart, user_id }) {
+function Home({ username, isLogout }) {
   return (
     <div className="home">
       {username && isLogout === false ? (
@@ -25,6 +25,13 @@ function Home({ username, isLogout, cart, user_id }) {
         </h1>
 
         <FeaturedCars />
+        {username === "admin" && isLogout === false ? (
+          <div>
+            <Link to="/users/logout">Logout</Link>
+          </div>
+        ) : (
+          ""
+        )}
       </section>
     </div>
   );

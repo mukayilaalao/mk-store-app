@@ -10,6 +10,7 @@ const API = process.env.REACT_APP_API_URL;
 
 function CarDetails({ addToTheCart, role, message }) {
   const [car, setCar] = useState({});
+
   const { id } = useParams();
   const navigate = useNavigate();
   useEffect(() => {
@@ -39,7 +40,7 @@ function CarDetails({ addToTheCart, role, message }) {
         <p>Status:{car.status}</p>
         <button onClick={() => addToTheCart(car)}>Add To Cart</button>
         <div>
-          {message ? (
+          {car.status && car.status.toLowerCase() === "sold" && message ? (
             <FlashMessage duration={5000}>
               <p className="error">
                 <strong>{message}</strong>

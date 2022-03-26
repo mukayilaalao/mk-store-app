@@ -57,6 +57,7 @@ const App = () => {
           username: "",
           password: "",
         });
+        setErrObj({ err: "", showError: false });
         setUserAccount({ isLogout: false, ...res.data.result });
         navigate("/");
       })
@@ -88,7 +89,6 @@ const App = () => {
           path="/"
           element={
             <Home
-              cart={cart}
               username={userAccount.username}
               isLogout={userAccount.isLogout}
             />
@@ -115,7 +115,7 @@ const App = () => {
         <Route
           path="/users/:user_id/orders"
           element={
-            <Orders message={message.includes("order") ? message : ""} />
+            <Orders message={message.includes("Order") ? message : ""} />
           }
         />
         <Route path="/cars" element={<Index />} />
